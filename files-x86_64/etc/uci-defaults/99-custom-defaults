@@ -3,6 +3,10 @@
 uci set network.lan.ipaddr='10.10.10.123/24'
 uci commit network
 
+uci set system.@system[0].zonename='Asia/Shanghai'
+uci set system.@system[0].timezone='CST-8'
+uci commit system
+
 sed -i 's#^root:[^:]*:#root::#' /etc/shadow
 
 exit 0
