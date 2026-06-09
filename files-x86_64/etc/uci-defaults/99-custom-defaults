@@ -5,6 +5,7 @@ uci commit network
 
 uci set system.@system[0].zonename='Asia/Shanghai'
 uci set system.@system[0].timezone='CST-8'
+uci set system.@system[0].hostname='OWrt'
 uci commit system
 
 sed -i 's#^root:[^:]*:#root::#' /etc/shadow
