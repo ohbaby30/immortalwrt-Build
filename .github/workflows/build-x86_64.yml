@@ -108,6 +108,42 @@ jobs:
           fail_on_unmatched_files: true
           make_latest: true
 
+      - name: Delete old x86_64 releases
+        uses: actions/github-script@v7
+        if: success()
+        with:
+          script: |
+            const currentTag = 'immortalwrt-x86_64-${{ inputs.branch || 'master' }}-${{ github.run_number }}';
+            const prefix = 'immortalwrt-x86_64-';
+            const releases = await github.paginate(github.rest.repos.listReleases, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              per_page: 100,
+            });
+
+            for (const release of releases) {
+              if (!release.tag_name.startsWith(prefix) || release.tag_name === currentTag) {
+                continue;
+              }
+
+              core.info(`Deleting old release ${release.tag_name}`);
+              await github.rest.repos.deleteRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                release_id: release.id,
+              });
+
+              try {
+                await github.rest.git.deleteRef({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  ref: `tags/${release.tag_name}`,
+                });
+              } catch (error) {
+                core.warning(`Could not delete tag ${release.tag_name}: ${error.message}`);
+              }
+            }
+
       - name: Upload firmware
         uses: actions/upload-artifact@v4
         if: always()
