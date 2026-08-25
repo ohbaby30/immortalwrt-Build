@@ -68,7 +68,14 @@ jobs:
         working-directory: immortalwrt
         run: |
           ./scripts/feeds update -a
+          # Install Xray from PassWall before the general install so the
+          # duplicate package in the ImmortalWrt packages feed cannot win.
+          ./scripts/feeds install -p passwall_packages xray-core
           ./scripts/feeds install -a
+          test -L package/feeds/passwall_packages/xray-core
+          test ! -e package/feeds/packages/xray-core
+          echo "Using PassWall xray-core:"
+          sed -n 's/^PKG_VERSION:=/  version: /p' package/feeds/passwall_packages/xray-core/Makefile
 
       - name: Load custom files
         run: |
