@@ -42,6 +42,24 @@ passwd root
 - Passwall2 的 `.apk` 安装包
 - `SHA256SUMS` 校验和文件，用于验证下载完整性
 
+## PassWall2 在线更新
+
+安装本仓库新构建的固件后，PassWall2 自身的“检查更新”“更新”“强制更新”使用本仓库 APK 和中文包；Xray、Sing-box 等核心组件保留各自的上游更新方式。
+
+- 每周日北京时间 02:00 自动拉取上游源码，替换 PassWall2 自身更新入口，自动设置本仓库构建版本，无需跟随上游手动修改版本号。
+- 主包版本为 `YYYYMMDD.<Actions run ID>.<attempt>-r1`，中文包使用相同的前三段版本；构建日期按运行创建时间转为北京时间。
+- 两个平台都内置相同更新地址。默认 `master`、默认配置的 x86_64 构建负责发布一套通用 APK；R4S 不竞争发布指针，x86_64 构建失败时更新源保留上一次成功版本。
+- 更新 JSON：[passwall2-release-api.json](https://raw.githubusercontent.com/ohbaby30/immortalwrt-Build/passwall2-update/passwall2-release-api.json)。首次成功构建发布前该地址尚不存在。GitHub 原始文件缓存可能使检查更新延迟数分钟。
+- 发布脚本先检查实际 APK 的版本、`noarch` 架构和包内更新入口，再校验远程附件大小及 SHA-256，全部成功才提交 `passwall2-update` 分支的 JSON。较旧运行不会覆盖较新版本。
+- 更新包存入独立的 `passwall2-*` Release，不随旧固件 Release 一起清理；保留历史版本用于回退。不要删除当前 JSON 引用的插件 Release。
+- 手动选择其他系统分支或配置时仍编入本仓库更新入口，但不会替换公共更新源；这些自定义系统与公共 APK 的依赖兼容性需自行验证。
+
+### 已安装旧固件时首次切换
+
+不必为了修改更新源而重刷固件。首次成功构建后，从本仓库对应的 `passwall2-*` Release 下载主程序 APK 和中文包，在设备上手动安装一次；此后可直接在 PassWall2 页面更新。先核对当前系统使用 APK 且依赖兼容，并导出 PassWall2 配置备份。旧版插件不会因仓库代码改变而自动切换入口。
+
+首次切换后包版本使用本仓库规则；恢复官方包需要显式选择官方 APK 并处理版本降级，不能依靠普通检查自动回退。APK 更新沿用上游安装器及其 `--allow-untrusted` 行为，不改变设备的软件源或签名密钥。
+
 ## 🙏特别感谢
 
 本项目源自于 [ImmortalWrt](https://github.com/immortalwrt/immortalwrt) 和 [PassWall2](https://github.com/Openwrt-Passwall/openwrt-passwall2)。
