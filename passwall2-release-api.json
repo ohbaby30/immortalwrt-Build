@@ -1,26 +1,26 @@
 {
-  "tag_name": "20261022.39741739648.1-1",
-  "display_version": "26.10.22-1 · 上游 26.10.20-1",
-  "html_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/tag/passwall2-20261022.39741739648.1-1",
+  "tag_name": "20261025.40130190932.1-1",
+  "display_version": "26.10.25-1 · 上游 26.10.20-1",
+  "html_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/tag/passwall2-20261025.40130190932.1-1",
   "assets": [
     {
-      "name": "luci-app-passwall2-20261022.39741739648.1-r1.apk",
-      "size": 359679,
-      "digest": "sha256:6d610fb21bfcb1c9182ff004701df4e5622678e85e43a5c7bc4d608c45dc5b2e",
-      "browser_download_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/download/passwall2-20261022.39741739648.1-1/luci-app-passwall2-20261022.39741739648.1-r1.apk"
+      "name": "luci-app-passwall2-20261025.40130190932.1-r1.apk",
+      "size": 366193,
+      "digest": "sha256:461c813e94ed7185ce4349dab08e754626bbfe57886aca4a0fef336ee1c43670",
+      "browser_download_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/download/passwall2-20261025.40130190932.1-1/luci-app-passwall2-20261025.40130190932.1-r1.apk"
     },
     {
-      "name": "luci-i18n-passwall2-zh-cn-20261022.39741739648.1.apk",
-      "size": 20795,
-      "digest": "sha256:35fd0db8b68a2e4df142a8817e096ccee9ebba1696aaa2c3560063a83dd93235",
-      "browser_download_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/download/passwall2-20261022.39741739648.1-1/luci-i18n-passwall2-zh-cn-20261022.39741739648.1.apk"
+      "name": "luci-i18n-passwall2-zh-cn-20261025.40130190932.1.apk",
+      "size": 21230,
+      "digest": "sha256:93079628372b2ee1be68c0439bd74a4cf9e2410711c53450590d537c76d58d1b",
+      "browser_download_url": "https://github.com/ohbaby30/immortalwrt-Build/releases/download/passwall2-20261025.40130190932.1-1/luci-i18n-passwall2-zh-cn-20261025.40130190932.1.apk"
     }
   ],
   "build": {
     "repository": "ohbaby30/immortalwrt-Build",
-    "run_id": 39741739648,
+    "run_id": 40130190932,
     "run_attempt": 1,
-    "upstream_commit": "896c586a27c9a7c0b9e3d75b631965dea86b9945",
+    "upstream_commit": "b68b3a03caf76065bf012f92f9514f07bb1c3f9b",
     "upstream_version": "26.10.20-1"
   }
 }
